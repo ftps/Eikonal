@@ -1,0 +1,7 @@
+# EIKONAL SOLVER #
+
+C++ project I did as an intern at Aerospace Propulsion Products B.V.
+Solves the Eikonal equation on a mesh geometry, used to predict its burning surface evolution.
+
+Currently only works for 3D meshes using the GMSH API
+Needs work to better implement 2D meshes, some form of visualisation (probably using GMSH post-proc), and higher order methods.
