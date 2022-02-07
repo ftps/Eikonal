@@ -1,4 +1,4 @@
-TARGET = eikonal
+TARGET = exe
 CC = g++
 LIBS = -lm -lgmsh
 HEAD = ./include
