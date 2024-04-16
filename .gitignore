@@ -1,2 +1,7 @@
 *.o
 exe
+eikonal
+gmsh-*
+data
+.vscode
+test/*.txt

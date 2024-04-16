@@ -362,6 +362,7 @@ void Mesh::exportMesh()
 {
     if(isGmsh){
         std::cout << "Info\t: Exporting file . . ." << std::endl;
+		gmsh::option::setNumber("Mesh.SaveAll", 1);
         gmsh::write(filename + ".diff");
         std::cout << "Info\t: Done." << std::endl;
     }
