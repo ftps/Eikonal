@@ -63,6 +63,7 @@ class Mesh {
         void exportMesh();
         uint getNnode() const;
         uint getNelem() const;
+		void exportInfo(std::fstream& fp) const;
 
         std::vector<int> inElem(const Vector3D& p, const bool& d3D = true);
         //tVdd getVals(const Vector<int,2>& key);

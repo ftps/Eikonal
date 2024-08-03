@@ -5,3 +5,5 @@ gmsh-*
 data
 .vscode
 test/*.txt
+test/*.dat
+test/*.diff

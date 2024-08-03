@@ -1,5 +1,7 @@
 #include "mesh.hpp"
 
+#include <iomanip>
+
 uint Mesh::isGmsh = 0;
 
 // auxiliary vector for identification of the element that contains a point
@@ -361,10 +363,20 @@ void Mesh::addBoundary(const int& tag, const int& b)
 void Mesh::exportMesh()
 {
     if(isGmsh){
-        std::cout << "Info\t: Exporting file . . ." << std::endl;
+        std::cout << "Info\t: Exporting mesh to file . . ." << std::endl;
 		gmsh::option::setNumber("Mesh.SaveAll", 1);
         gmsh::write(filename + ".diff");
         std::cout << "Info\t: Done." << std::endl;
     }
     else std::cout << "Error\t: Mesh was not created. Nothing to export." << std::endl;
+}
+
+void Mesh::exportInfo(std::fstream& fp) const
+{
+	fp << getNnode() << std::endl << std::endl;
+
+	fp << std::fixed << std::setprecision(10);
+	for (const Node& node : nodes) {
+		fp << node.N << "\t" << node.val << std::endl;
+	}
 }

@@ -63,11 +63,11 @@ uint writeThings(const std::string& filename, const FastMarch* const f, const pa
 	uint i = 0;
 
 	while(true){
-		if(!fs::exists(filename + "_" + std::to_string(i) + ".txt") && !fs::exists(filename + "_info" + std::to_string(i) + ".txt")) break;
+		if(!fs::exists(filename + "_" + std::to_string(i) + ".dat") && !fs::exists(filename + "_full" + std::to_string(i) + ".txt")) break;
 		++i;
 	}
 
-	fp.open(filename + "_" + std::to_string(i) + ".txt", std::ofstream::out);
+	fp.open(filename + "_" + std::to_string(i) + ".dat", std::ofstream::out);
 
 	std::cout << "Info\t: Writing to file . . ." << std::endl;
 
@@ -76,14 +76,8 @@ uint writeThings(const std::string& filename, const FastMarch* const f, const pa
 	}
 
 	fp.close();
-	fp.open(filename + "_info" + std::to_string(i) + ".txt", std::ofstream::out);
-	fp << "Mesh info:\nNumber of nodes: " << f->getNnode() << std::endl;
-	fp << "Number of elements: " << f->getNelem() << std::endl;
-	//fp << "Read time: " << std::chrono::duration_cast<std::chrono::seconds>(mid1 - start).count() << " seconds.\n" << std::endl;
-	
-	fp << "Solution info:\nTotal volume: " << std::fixed << trapInt(res) << ", Initial surface: " << std::fixed << res[0].second << std::endl;
-	//fp << "Solving time: " << std::chrono::duration_cast<std::chrono::seconds>(mid2 - mid1).count() << " seconds." << std::endl;
-	//fp << "Geting surface time: " << std::chrono::duration_cast<std::chrono::seconds>(end - mid2).count() << " seconds." << std::endl;
+	fp.open(filename + "_full" + std::to_string(i) + ".dat", std::ofstream::out);
+	f->exportInfo(fp);
 	fp.close();
 	std::cout << "Info\t: Done." << std::endl;
 
